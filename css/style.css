@@ -1567,8 +1567,40 @@ body {
   color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition-fast);
+}.footer-bottom-links a:hover {
+  color: var(--text-primary);
 }
 
-.footer-bottom-links a:hover {
-  color: var(--text-primary);
+/* Mobile Navbar Alignment Fix */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px 4%;
+  }
+  
+  .nav-logo {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .parent-badge {
+    display: none !important;
+  }
+
+  .hero {
+    padding-top: 140px;
+  }
 }

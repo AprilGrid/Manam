@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANAM | Luxury Digital Wedding Invitations</title>
+  <meta name="description" content="Manam designs premium, bespoke digital wedding invitation suites that tell your unique story. Beautiful layouts, custom soundscapes, and cinematic motion.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Inline Animation Helpers for Scroll Trigger reveals -->
+  <style>
+    /* CSS scroll animations */
+    .reveal-fade, .reveal-slide-left, .reveal-slide-right, .reveal-zoom {
+      opacity: 0;
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-fade {
+      transform: translateY(30px);
+    }
+    .reveal-slide-left {
+      transform: translateX(-40px);
+    }
+    .reveal-slide-right {
+      transform: translateX(40px);
+    }
+    .reveal-zoom {
+      transform: scale(0.95);
+    }
+    
+    .scroll-animated {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    
+    /* Hero initial entry delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.25s; }
+    .delay-3 { transition-delay: 0.4s; }
+    .delay-4 { transition-delay: 0.55s; }
+  </style>
+</head>
+<body class="theme-default">
+
+  <!-- Interactive Particles Canvas Background -->
+  <canvas id="particle-canvas"></canvas>
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <!-- Sleek Luxury Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo-wrap">
+      <svg class="preloader-logo-svg" viewBox="0 0 500 500" width="120" height="120">
+        <defs>
+          <linearGradient id="preloader-gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C5A059" />
+            <stop offset="30%" stop-color="#F3E7C4" />
+            <stop offset="70%" stop-color="#B4924E" />
+            <stop offset="100%" stop-color="#8B692E" />
+          </linearGradient>
+        </defs>
+        <path d="M 250,175 
+                 C 220,135 170,130 140,165 
+                 C 110,200 110,260 110,295 
+                 C 110,335 125,365 160,365 
+                 C 195,365 210,335 210,295 
+                 L 210,240 
+                 L 250,200 
+                 L 290,240 
+                 L 290,295 
+                 C 290,335 305,365 340,365 
+                 C 375,365 390,335 390,295 
+                 C 390,260 390,200 360,165 
+                 C 330,130 280,135 250,175 Z" />
+      </svg>
+    </div>
+    <div class="preloader-count">00</div>
+    <div class="preloader-bar-bg">
+      <div class="preloader-bar"></div>
+    </div>
+    <div class="preloader-txt">Manam • Initializing Artistry</div>
+  </div>
+
+  <!-- Dynamic Luxury Navbar -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">
+      <img src="assets/logo.svg" alt="MANAM logo" class="nav-logo-svg">
+      <span class="nav-logo-text">MANAM</span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="#showcase" class="nav-link">Themes</a>
+      <a href="#builder" class="nav-link">Design Studio</a>
+      <a href="#philosophy" class="nav-link">About</a>
+      <a href="#enquiry" class="nav-link">Contact</a>
+    </div>
+
+    <!-- Parent company redirect link -->
+    <a href="https://www.aprilgrid.com" target="_blank" class="parent-badge" id="parent-badge">
+      <span class="parent-logo-dot"></span>
+      <span>By April Grid</span>
+    </a>
+  </nav>
+
+  <!-- Hero Landing Section -->
+  <header class="hero">
+    <div class="hero-container">
+      <span class="hero-subtitle fade-entrance" style="opacity: 0; transform: translateY(20px);">Exclusive Custom Digital Suites</span>
+      <h1 class="hero-title fade-entrance" style="opacity: 0; transform: translateY(30px);">
+        Modern Romance,<br>
+        Digitally <span class="text-gradient">Crafted.</span>
+      </h1>
+      <p class="hero-desc fade-entrance" style="opacity: 0; transform: translateY(20px);">
+        Manam designs premium, bespoke digital invitations that reflect your wedding's soul. Immersive audio, cinematic motion, and fluid interactive storytellings made for the modern couple.
+      </p>
+      
+      <div class="hero-buttons fade-entrance" style="opacity: 0; transform: translateY(20px);">
+        <a href="#builder" class="btn-luxury btn-luxury-gold">Open Studio</a>
+        <a href="#showcase" class="btn-luxury btn-luxury-outline">Explore Themes</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient Audio Equalizer Widget -->
+  <div class="audio-widget" id="audio-widget">
+    <div class="audio-icon-wrap">
+      <div class="audio-equalizer">
+        <span class="audio-bar"></span>
+        <span class="audio-bar"></span>
+        <span class="audio-bar"></span>
+        <span class="audio-bar"></span>
+      </div>
+    </div>
+    <span class="audio-txt">Sound Off</span>
+  </div>
+
+  <!-- Interactive Showcase Carousel (Curated Design Universes) -->
+  <section class="showcase-section" id="showcase">
+    <div class="builder-header reveal-fade">
+      <span class="builder-subtitle">Choose a Vibe</span>
+      <h2 class="builder-title">Curated Design Universes</h2>
+      <p class="builder-desc">Click on any universe to transform the entire layout and atmosphere of our site into that design aesthetic.</p>
+    </div>
+
+    <div class="showcase-cards">
+      <!-- Theme Card 1: Imperial Gold -->
+      <div class="showcase-card card-default reveal-zoom" data-theme="theme-default" onclick="setGlobalTheme('theme-default')">
+        <div class="showcase-card-bg" style="background-image: radial-gradient(circle, var(--accent) 0%, transparent 80%);"></div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-tag">Universe 01</div>
+          <h3 class="showcase-card-title">Imperial Gold</h3>
+          <p class="showcase-card-desc">Deep obsidian backgrounds meeting luxurious, shimmering gold. Bold, majestic, and timeless.</p>
+          <div class="showcase-card-action">
+            <span>Apply Aesthetic</span>
+            <span class="showcase-card-arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme Card 2: Royal Heritage -->
+      <div class="showcase-card card-royal reveal-zoom delay-1" data-theme="theme-royal" onclick="setGlobalTheme('theme-royal')">
+        <div class="showcase-card-bg" style="background-image: radial-gradient(circle, var(--accent) 0%, transparent 80%);"></div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-tag">Universe 02</div>
+          <h3 class="showcase-card-title">Royal Heritage</h3>
+          <p class="showcase-card-desc">Royal burgundy backdrop matching antique brass. Inspired by Indian palace architecture and heritage embroidery.</p>
+          <div class="showcase-card-action">
+            <span>Apply Aesthetic</span>
+            <span class="showcase-card-arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme Card 3: Celestial Cosmic -->
+      <div class="showcase-card card-celestial reveal-zoom delay-2" data-theme="theme-celestial" onclick="setGlobalTheme('theme-celestial')">
+        <div class="showcase-card-bg" style="background-image: radial-gradient(circle, var(--accent) 0%, transparent 80%);"></div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-tag">Universe 03</div>
+          <h3 class="showcase-card-title">Celestial Cosmic</h3>
+          <p class="showcase-card-desc">Vibrant indigo, midnight navy, and stardust silver. Tailored for night skies, cosmic unions, and ethereal bonds.</p>
+          <div class="showcase-card-action">
+            <span>Apply Aesthetic</span>
+            <span class="showcase-card-arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme Card 4: Minimalist Modern -->
+      <div class="showcase-card card-minimalist reveal-zoom delay-3" data-theme="theme-minimalist" onclick="setGlobalTheme('theme-minimalist')">
+        <div class="showcase-card-bg" style="background-image: radial-gradient(circle, var(--accent) 0%, transparent 80%);"></div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-tag">Universe 04</div>
+          <h3 class="showcase-card-title">Minimalist Modern</h3>
+          <p class="showcase-card-desc">Soft warm alabaster and subtle champagne. Curated for understated luxury, clean lines, and chic modern typography.</p>
+          <div class="showcase-card-action">
+            <span>Apply Aesthetic</span>
+            <span class="showcase-card-arrow">&rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Invitation Builder Section (Split Layout) -->
+  <section class="builder-section" id="builder">
+    <div class="builder-header reveal-fade">
+      <span class="builder-subtitle">Experience the Artistry</span>
+      <h2 class="builder-title">Interactive Design Studio</h2>
+      <p class="builder-desc">Type your details below and choose a theme to watch your digital invitation suite animate instantly on the display model.</p>
+    </div>
+
+    <div class="builder-grid">
+      <!-- Left Panel: Builder Controls -->
+      <div class="builder-controls reveal-slide-left">
+        
+        <h3 class="builder-step-title">
+          <span class="builder-step-num">1</span>
+          <span>Personalize Names</span>
+        </h3>
+        
+        <div class="form-group-row">
+          <div class="input-box">
+            <input type="text" id="input-groom" placeholder=" " autocomplete="off" required>
+            <label for="input-groom">Groom's First Name</label>
+          </div>
+          <div class="input-box">
+            <input type="text" id="input-bride" placeholder=" " autocomplete="off" required>
+            <label for="input-bride">Bride's First Name</label>
+          </div>
+        </div>
+
+        <h3 class="builder-step-title" style="margin-top: 40px;">
+          <span class="builder-step-num">2</span>
+          <span>Event Details</span>
+        </h3>
+
+        <div class="form-group-row">
+          <div class="input-box">
+            <input type="date" id="input-date" placeholder=" " required>
+            <label for="input-date">Wedding Date</label>
+          </div>
+          <div class="input-box">
+            <input type="text" id="input-venue" placeholder=" " autocomplete="off" required>
+            <label for="input-venue">Wedding Venue</label>
+          </div>
+        </div>
+
+        <h3 class="builder-step-title" style="margin-top: 40px;">
+          <span class="builder-step-num">3</span>
+          <span>Pick Invitation Theme</span>
+        </h3>
+        
+        <p class="theme-picker-title">Selected Palette</p>
+        <div class="theme-chips">
+          <div class="theme-chip active" data-theme="theme-default">
+            <div class="theme-chip-color" style="background-color: #c5a059;"></div>
+            <div class="theme-chip-name">Gold</div>
+          </div>
+          <div class="theme-chip" data-theme="theme-royal">
+            <div class="theme-chip-color" style="background-color: #e2c07f;"></div>
+            <div class="theme-chip-name">Royal</div>
+          </div>
+          <div class="theme-chip" data-theme="theme-celestial">
+            <div class="theme-chip-color" style="background-color: #a9c6e2;"></div>
+            <div class="theme-chip-name">Cosmic</div>
+          </div>
+          <div class="theme-chip" data-theme="theme-minimalist">
+            <div class="theme-chip-color" style="background-color: #8b7355;"></div>
+            <div class="theme-chip-name">Minimal</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+          <a href="#enquiry" class="btn-luxury btn-luxury-gold" style="width: 100%; text-align: center;">Lock In This Theme &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Right Panel: Live Mobile Mockup Preview -->
+      <div class="mockup-wrapper reveal-slide-right">
+        <div class="phone-mockup">
+          <div class="phone-speaker"></div>
+          <div class="phone-camera"></div>
+          
+          <div class="phone-screen" id="phone-screen">
+            <div class="invite-border"></div>
+            <div class="invite-border-inner"></div>
+            
+            <div class="invite-badge">
+              <svg class="invite-badge-svg" viewBox="0 0 500 500">
+                <path d="M 250,175 
+                         C 220,135 170,130 140,165 
+                         C 110,200 110,260 110,295 
+                         C 110,335 125,365 160,365 
+                         C 195,365 210,335 210,295 
+                         L 210,240 
+                         L 250,200 
+                         L 290,240 
+                         L 290,295 
+                         C 290,335 305,365 340,365 
+                         C 375,365 390,335 390,295 
+                         C 390,260 390,200 360,165 
+                         C 330,130 280,135 250,175 Z" 
+                      fill="var(--accent)" />
+              </svg>
+            </div>
+            
+            <span class="invite-save-date">Save the Date</span>
+            
+            <h4 class="invite-names">
+              <span id="preview-groom">Aaryan</span>
+              <span class="invite-ampersand">and</span>
+              <span id="preview-bride">Aanya</span>
+            </h4>
+            
+            <div class="invite-divider"></div>
+            <p class="invite-details-p">ARE GETTING MARRIED ON</p>
+            
+            <div class="invite-date-grid">
+              <div class="invite-date-month" id="preview-date-month">DECEMBER</div>
+              <div class="invite-date-divider"></div>
+              <div class="invite-date-day" id="preview-date-day">18</div>
+            </div>
+            
+            <p class="invite-details-p">AT</p>
+            <p class="invite-location" id="preview-venue">The Taj Palace, Udaipur</p>
+            
+            <button class="invite-btn">Join Celebration</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Philosophy / April Grid Connection Section -->
+  <section class="philosophy-section" id="philosophy">
+    <div class="philosophy-grid">
+      <!-- Left side: Kinetic Visual Grid -->
+      <div class="philosophy-visual reveal-slide-left">
+        <div class="visual-bg-grid"></div>
+        <div class="visual-glowing-ring"></div>
+        <div class="visual-glowing-ring"></div>
+        <img src="assets/logo.svg" alt="MANAM logo" class="visual-logo-mark">
+      </div>
+
+      <!-- Right side: Details & Link -->
+      <div class="philosophy-content reveal-slide-right">
+        <span class="philosophy-tag">Craftsmanship</span>
+        <h2 class="philosophy-title">Where Bold Design Meets Precision Code</h2>
+        <p class="philosophy-desc">
+          Manam is a specialized, luxury design division of <strong>April Grid</strong>. We believe wedding invitations shouldn't be plain cards; they should be immersive digital legacies that spark joy and curiosity.
+        </p>
+
+        <div class="philosophy-bullets">
+          <div class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <div class="bullet-text">
+              <h4>Tailored Motion</h4>
+              <p>Liquid transitions that run at 60fps on all mobile browsers.</p>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <div class="bullet-text">
+              <h4>Audio Soundscapes</h4>
+              <p>Harmonious scores synchronized to card elements.</p>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <div class="bullet-text">
+              <h4>Infinite Themes</h4>
+              <p>Complete aesthetic modifications tailored to your venue.</p>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <span class="bullet-icon">✦</span>
+            <div class="bullet-text">
+              <h4>Flawless RSVP</h4>
+              <p>Seamless database management and live attendee updates.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="visit-parent-box">
+          <div class="parent-logo-dot"></div>
+          <div class="parent-info-txt">
+            Looking for custom corporate branding, software engineering, or next-gen Web3 sites? Visit our parent company <strong>April Grid</strong>.
+          </div>
+          <a href="https://www.aprilgrid.com" target="_blank" class="btn-luxury btn-luxury-outline" style="padding: 10px 20px; font-size: 0.75rem;">Visit April Grid</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Enquiry Form (Luxurious Wax Seal Process) -->
+  <section class="enquiry-section" id="enquiry">
+    <div class="enquiry-container">
+      <div class="builder-header reveal-fade">
+        <span class="builder-subtitle">Begin Your Journey</span>
+        <h2 class="builder-title">Submit a Design Enquiry</h2>
+        <p class="builder-desc">Walk through our premium briefing suite. Upon completion, seal your request with our signature wax logo.</p>
+      </div>
+
+      <div class="form-card reveal-zoom">
+        <!-- Inside Wax Stamp Success Screen Overlay -->
+        <div class="wax-seal-wrapper" id="wax-seal-wrapper">
+          <div class="wax-stamp-stamp" id="wax-stamp">
+            <div class="wax-stamp-inner">
+              <img src="assets/logo.svg" alt="M Logo" class="wax-stamp-logo">
+            </div>
+          </div>
+          <h3 class="seal-success-txt">Enquiry Stamped</h3>
+          <p class="seal-success-subtxt">Your custom invitation brief has been sealed and dispatched to our creative team. We will review your vision and connect within 24 hours.</p>
+          <button type="button" class="btn-luxury btn-luxury-outline seal-close-btn" id="seal-close-btn">Return to Studio</button>
+        </div>
+
+        <!-- Form Progress Bar -->
+        <div class="form-progress-wrap">
+          <div class="form-progress-bar"></div>
+        </div>
+
+        <!-- Form Elements -->
+        <form id="wedding-enquiry-form" novalidate>
+          <!-- Step 1: Couple Details -->
+          <div class="form-step active" data-step="0">
+            <h3 class="form-step-title">Tell Us About Yourselves</h3>
+            <p class="form-step-desc">Provide your contact info so we can share custom concepts and mockups.</p>
+            
+            <div class="input-box">
+              <input type="text" id="form-couple-names" placeholder=" " required>
+              <label for="form-couple-names">Both Your Names (e.g. Aaryan & Aanya)</label>
+            </div>
+            
+            <div class="form-group-row">
+              <div class="input-box">
+                <input type="email" id="form-email" placeholder=" " required>
+                <label for="form-email">Email Address</label>
+              </div>
+              <div class="input-box">
+                <input type="tel" id="form-phone" placeholder=" " required>
+                <label for="form-phone">Contact Number</label>
+              </div>
+            </div>
+
+            <div class="form-nav-buttons">
+              <span></span> <!-- Spacer -->
+              <button type="button" class="btn-luxury btn-luxury-gold btn-next">Next Step &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Event Details -->
+          <div class="form-step" data-step="1">
+            <h3 class="form-step-title">Tell Us About Your Celebration</h3>
+            <p class="form-step-desc">Help us map the scale and aesthetic boundaries of your wedding theme.</p>
+            
+            <div class="form-group-row">
+              <div class="input-box">
+                <input type="date" id="form-wedding-date" placeholder=" " required>
+                <label for="form-wedding-date">Event Date</label>
+              </div>
+              <div class="input-box">
+                <input type="number" id="form-guest-count" placeholder=" " min="10" required>
+                <label for="form-guest-count">Estimated Guests</label>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <select id="form-theme-select" class="theme-selector-input" required>
+                <option value="theme-default">Imperial Gold & Obsidian</option>
+                <option value="theme-royal">Royal Heritage & Burgundy</option>
+                <option value="theme-celestial">Celestial Cosmic & Blue</option>
+                <option value="theme-minimalist">Minimalist Modern & Alabaster</option>
+              </select>
+              <label for="form-theme-select" style="top: 0; font-size: 0.75rem; padding: 0 8px; background-color: var(--bg-card); color: var(--accent); transform: translateY(-50%) translateX(-4px);">Preferred Design Theme</label>
+            </div>
+
+            <div class="form-nav-buttons">
+              <button type="button" class="btn-luxury btn-luxury-outline btn-prev">&larr; Back</button>
+              <button type="button" class="btn-luxury btn-luxury-gold btn-next">Next Step &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Creative Freedom -->
+          <div class="form-step" data-step="2">
+            <h3 class="form-step-title">Creative Freedom & Notes</h3>
+            <p class="form-step-desc">Share any unique vision, custom tracks, or specific layout ideas you have.</p>
+            
+            <div class="input-box">
+              <textarea id="form-notes" placeholder=" " rows="4" style="resize: none;" required></textarea>
+              <label for="form-notes">Tell us about your wedding theme and layout ideas...</label>
+            </div>
+
+            <div class="form-nav-buttons">
+              <button type="button" class="btn-luxury btn-luxury-outline btn-prev">&larr; Back</button>
+              <button type="submit" class="btn-luxury btn-luxury-gold" id="btn-submit-seal">Stamp & Seal Enquiry</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Luxury Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>MANAM</h2>
+        <p>Designing digital heirlooms for premium wedding experiences. Bridging high-end art and modern engineering.</p>
+        <!-- Parent company logo badge in footer -->
+        <a href="https://www.aprilgrid.com" target="_blank" class="footer-parent-link">
+          <span class="parent-logo-dot"></span>
+          <span>A Venture by April Grid</span>
+        </a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul>
+          <li><a href="#showcase">Design Themes</a></li>
+          <li><a href="#builder">Interactive Studio</a></li>
+          <li><a href="#philosophy">Our Craftsmanship</a></li>
+          <li><a href="#enquiry">Submit Brief</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@aprilgrid.com">hello@aprilgrid.com</a></li>
+          <li><a href="https://www.aprilgrid.com" target="_blank">aprilgrid.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 MANAM Digital. Powered by April Grid. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Javascript Engines -->
+  <script src="js/main.js"></script>
+  <script src="js/invitation-preview.js"></script>
+</body>
+</html>
